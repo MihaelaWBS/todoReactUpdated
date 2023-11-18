@@ -16,6 +16,11 @@ export function Task({ task, onDelete, onComplete, onEdit, onSave}) {
   };
 
   const handleSave = () => {
+    if (!editedTitle.trim()) {
+      alert("Please enter a task title.");
+      return;
+   }
+
     setIsEditing(false);
     onSave(task.id, editedTitle);
   };

@@ -24,6 +24,11 @@ function App() {
 	}, []);
 
 	function addTask(taskTitle) {
+		if (!taskTitle.trim()) {
+			alert("Please enter a task title.");
+			return;
+		}
+
 		setTasksAndSave([
 			...tasks,
 			{
@@ -36,16 +41,16 @@ function App() {
 
 	function saveTaskById(taskId, newTitle) {
 		const newTasks = tasks.map((task) => {
-		  if (task.id === taskId) {
-			return {
-			  ...task,
-			  title: newTitle,
-			};
-		  }
-		  return task;
+			if (task.id === taskId) {
+				return {
+					...task,
+					title: newTitle,
+				};
+			}
+			return task;
 		});
 		setTasksAndSave(newTasks);
-	  }
+	}
 
 	function deleteTaskById(taskId) {
 		const newTasks = tasks.filter((task) => task.id !== taskId);
